@@ -1,0 +1,35 @@
+
+.tile {
+    display: flex;
+    padding: var(--spacing);
+    border-bottom: var(--border);
+}
+
+.tile > i {
+    color: var(--light-text-color);
+    font-size: calc(var(--font-size) * 1.5);
+    margin: var(--spacing);
+}
+
+.tile > div {
+    width: 100%;
+}
+
+.tile-body {
+    width: 100%;
+    padding: var(--spacing) calc(var(--spacing) * .2);
+    border-bottom: var(--border);
+}
+
+.tile-body:last-child {
+    border-bottom: none;
+}
+
+.tile .intro {
+    color: var(--light-text-color);
+}
+
+.tile .title {
+    padding-top: calc(var(--spacing) * .2);
+    color: var(--text-color);
+}

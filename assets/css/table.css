@@ -1,0 +1,75 @@
+table.dataTable {
+    box-sizing: border-box;
+    padding: 0;
+    border: none;
+}
+
+table.dataTable thead td {
+    padding: 0;
+    border: none;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 0;
+    border: none;
+}
+
+table.dataTable.no-footer {
+    border-top: var(--border);
+    border-bottom: var(--border);
+    margin-bottom: var(--spacing);
+}
+
+.dataTables_wrapper .dataTables_length {
+    padding-bottom: var(--spacing);
+}
+
+.dataTables_wrapper .dataTables_filter {
+    padding-bottom: var(--spacing);
+}
+
+table {    
+    width: 100% !important;
+    border-top: var(--border);
+    border-bottom: var(--border);
+    border-collapse: collapse;
+}
+
+td {
+    padding: calc(var(--spacing) * 1.5) var(--spacing) !important;
+}
+
+tr td:first-child {
+    width: 30px;
+}
+
+thead tr td {
+    font-size: calc(var(--font-size) * 1.1) !important;
+    font-weight: 600 !important;
+    border-bottom: var(--border) !important;
+}
+
+tbody tr {
+    cursor: pointer;
+    border-radius: var(--radius);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f8f8 !important;
+}
+
+tbody tr:hover {
+    background-color: var(--light-main-color) !important;
+}
+
+tbody tr.selected {
+    background-color: var(--light-main-color) !important;
+}
+
+tbody tr.selected input[type='checkbox'] {
+    display: none;
+}
+
+tbody tr:active {
+    transform: translateY(2px) !important;
+}

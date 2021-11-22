@@ -1,0 +1,34 @@
+/* STYLING FOR ALL FORM ELEMENTS */
+
+input {
+    outline: none;
+}
+
+.custom-input {
+    display: flex;
+    background-color: var(--light-main-color);
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius);
+}
+
+.custom-input .icon {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 40px;
+    height: 100%;
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.custom-input .icon i {
+    color: var(--support-text-color);
+}
+
+.custom-input input {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding-right: var(--spacing);
+}

@@ -1,0 +1,150 @@
+/* STYLING FOR PAGE LAYOUT AND GENERAL COMPONENTS */
+
+* {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+}
+
+
+/* Sidebar Styling */
+
+#sidebar {
+    width: var(--sidebar-size);
+    height: 100vh;
+    background-color: var(--main-color);
+}
+
+#sidebar .logo {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: calc(var(--header-size) * 1.5);
+}
+
+.tab-nav {
+    width: 100%;
+    padding: calc(var(--spacing) * 2) 0;
+    list-style: none;
+}
+
+.tab-nav>li {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 calc(var(--spacing) * 2);
+    color: whitesmoke;
+    font-size: var(--font-size);
+    font-weight: 600;
+    transition: all ease-in-out .05s;
+    cursor: pointer;
+}
+
+.tab-nav>li>span {
+    margin: 0 var(--spacing);
+}
+
+.tab-nav>li:hover {
+    background-color: var(--tint-main-color);
+    font-size: calc(var(--font-size) * 1.1);
+}
+
+.tab-nav>li:active {
+    transform: translateY(2px);
+}
+
+#main {
+    width: calc(100vw - var(--sidebar-size));
+    height: 100vh;
+}
+
+#main>header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-size);
+    padding: var(--spacing);
+    border-bottom: var(--border);
+}
+
+#header-search {
+    height: 100%;
+    width: 300px;
+}
+
+#header-icons {
+    display: flex;
+    height: 100%;
+}
+
+#header-icons>div {
+    display: grid;
+    align-content: center;
+    width: calc(var(--header-size) - (var(--spacing) * 2));
+    height: 100%;
+    background-color: transparent;
+    color: var(--tint-main-color);
+    margin: 0 calc(var(--spacing) * .5);
+    text-align: center;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#header-icons>div:hover {
+    background-color: var(--light-main-color);
+    color: black;
+}
+
+#header-icons>div:active {
+    background-color: var(--tint-main-color);
+    color: white;
+}
+
+#main main {
+    position: relative;
+    height: calc(100vh - var(--header-size));
+}
+
+#main main > #content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-grey-color);
+    overflow: auto;
+    transition: var(--transition);
+}
+
+#main-content {
+    width: 100%;
+    height: 100%;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: calc(var(--spacing) * .5);
+}
+
+#sub-content {
+    width: 0;
+    height: 100%;
+    background-color: white;
+    padding: 0px;
+    overflow-x: hidden;
+    border-left: var(--border);
+    transition: var(--transition);
+}
+
+#sub-content.active {
+    width: calc(var(--sidebar-size) * 2);
+    padding: var(--spacing);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+

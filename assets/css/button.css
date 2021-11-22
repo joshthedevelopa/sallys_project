@@ -1,0 +1,40 @@
+.btn {
+    display: inline-block;
+    padding: var(--spacing) calc(var(--spacing) * 2);
+    margin: var(--spacing);
+    border-radius: calc(var(--radius) * .8);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition)
+}
+
+.btn:hover {
+    background-color: var(--main-color);
+}
+
+.btn:active {
+    transform: translateY(2px);
+}
+
+.btn-primary {
+    background-color: #2B3CD5;
+    color: white;
+}
+
+.close-btn {
+    display: inline-block;
+    padding: var(--spacing) calc(var(--spacing) * 1.2);
+    border-radius: 100%;
+    background-color: transparent;
+    color: var(--tint-main-color);
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: var(--light-main-color);
+}
+
+.close-btn:active {
+    color: white;
+    background-color: var(--tint-main-color);
+}
