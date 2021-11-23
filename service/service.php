@@ -9,7 +9,7 @@ abstract class Service
 
         switch ($method) {
             case "POST":
-                return static::post(["data" => $data, "files" => $files], $end);
+                return static::post(["data" => $data, "files" => $files], (int) $end);
 
             case "GET":
                 return static::get($data, (int) $end);

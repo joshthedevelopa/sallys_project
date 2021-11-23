@@ -14,7 +14,7 @@ $endpoint = new Endpoint(array_slice($uri, array_search("service", $uri) + 1));
 $method = $_SERVER['REQUEST_METHOD'];
 
 $data = $_REQUEST;
-$files = $_FILES;
+$files = $_FILES['file'] ?? [];
 
 Router::parse($endpoint, $method, $data, $files);
 exit(Router::route());

@@ -15,17 +15,15 @@
             </div>
             <div class="card-action">
                 <ul>
-                    <li> <i class="fa fa-sm fa-cloud-upload"></i>
+                    <li class="navigation-btn" target="backup_form"> 
+                        <i class="fa fa-sm fa-cloud-upload"></i>
                         <h5>Create A Backup</h5>
-                    </li>
-                    <li> <i class="fa fa-sm fa-history"></i>
-                        <h5>Restore A Backup</h5>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="card-body table-responsive">
-            <table id="table-data" class="customers-table">
+            <table id="table-data" class="selective-table" data="backups">
                 <thead>
                     <tr>
                         <td>
@@ -75,15 +73,15 @@
             </div>
             <div class="tile-body">
                 <div class="intro">Last Backup Date</div>
-                <div class="title  data-holder" data="backup_date">None</div>
+                <div class="title  data-holder" data="date_created">None</div>
             </div>
         </div>
     </div>
 
     <div class='tile'>
         <div class="row">
-            <div class="btn btn-primary data-holder-action" data="None">Delete</div>
-            <div class="btn btn-primary data-holder-action" data="None">Restore</div>
+            <div class="btn btn-primary data-holder-action" action="delete_backup" data="None">Delete</div>
+            <div class="btn btn-primary data-holder-action" action="restore_backup" data="None">Restore</div>
         </div>
     </div>
 
@@ -99,16 +97,12 @@
                 <div class="title  data-holder" data="customer_contact">None</div>
             </div>
             <div class="tile-body">
-                <div class="intro">Total Number of Backup</div>
-                <div class="title  data-holder" data="no_of_backups">None</div>
-            </div>
-            <div class="tile-body">
                 <div class="intro">Backup Quota</div>
-                <div class="title  data-holder" data="backup_quota">None</div>
+                <div class="title  data-holder" data="customer_backup_quota">None</div>
             </div>
             <div class="tile-body">
                 <div class="intro">Total Backup Size</div>
-                <div class="title  data-holder" data="total_backup_size">None</div>
+                <div class="title  data-holder" data="customer_backup_size">None</div>
             </div>
         </div>
     </div>

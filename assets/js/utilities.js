@@ -1,6 +1,11 @@
 
 export class Util {
     static intParser(value = "") {
+        var _tmp = value.toString();
+
+        value = _tmp.split(".")[0];
+        var dec = _tmp.split(".")[1] ?? "0000";
+
         value = value.toString().split("").reverse();
         
         var _values = [];
@@ -14,7 +19,7 @@ export class Util {
             }
         }
 
-        return _values.join("");
+        return _values.join("") + "." + dec;
 
     }
 }

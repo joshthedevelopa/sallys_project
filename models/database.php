@@ -132,10 +132,10 @@ class Database
         array $conjuction = ["AND"]
     ): Database {
         if (is_int($targets)) {
-            return $this->action("DELET", $table, ["id", "=", $targets]);
+            return $this->action("DELETE", $table, ["id", "=", $targets]);
         }
 
-        return $this->action("DELET", $table, $targets, $conjuction);
+        return $this->action("DELETE", $table, $targets, $conjuction);
     }
 
     public function insert(
@@ -170,8 +170,8 @@ class Database
         array $data,
         int $id
     ): Database {
-        $values = [$id];
-        $sub_sql = "";;
+        $values = [];
+        $sub_sql = "";
 
         foreach ($data as $col => $value) {
             if ($sub_sql != "") {
@@ -181,7 +181,9 @@ class Database
             $sub_sql .= "$col = ?";
             array_push($values, $value);
         }
-        return $this->query("UPDATE $table SET " . $sub_sql, $values);
+
+        array_push($values, $id);
+        return $this->query("UPDATE $table SET " . $sub_sql . "WHERE id = ?", $values);
     }
 
     public function results(
@@ -205,7 +207,7 @@ class Database
 
     public function id(): int
     {
-        return $this->_id;
+        return $this->_id ?? 0;
     }
 
     public function error(): bool
