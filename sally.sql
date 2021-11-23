@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2021 at 10:34 PM
+-- Generation Time: Nov 23, 2021 at 08:09 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -32,7 +32,8 @@ CREATE TABLE `backups` (
   `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `backup_size` decimal(10,0) NOT NULL DEFAULT 0,
+  `backup_filename` text NOT NULL,
+  `backup_size` decimal(10,5) NOT NULL DEFAULT 0.00000,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -47,22 +48,21 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `contact` varchar(20) NOT NULL,
   `location` text NOT NULL,
-  `backup_quota` decimal(11,0) NOT NULL,
-  `backup_size` decimal(11,0) NOT NULL DEFAULT 0,
+  `backup_quota` decimal(11,5) NOT NULL,
+  `backup_size` decimal(11,5) NOT NULL DEFAULT 0.00000,
   `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `contact`, `location`, `backup_quota`, `backup_size`, `date_updated`, `date_created`) VALUES
-(1, 'Joshua Pong', '233 546 308 417', 'Kasoa', '1024', '0', '2021-11-22 20:22:24', '2021-11-22 20:22:24');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `backups`
+--
+ALTER TABLE `backups`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -75,10 +75,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `backups`
+--
+ALTER TABLE `backups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
