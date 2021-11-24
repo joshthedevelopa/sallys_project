@@ -54,7 +54,7 @@
 <script src="assets/js/jquery.min.js"></script>
 
 <!-- Libraries -->
-<script src="assets/lib/datatables/dataTables.js"></script>
+<script src="assets/lib/datatables/datatables.js"></script>
 <script src="assets/lib/sweetalert/sweetalert.js"></script>
 
 <!-- Custom -->
