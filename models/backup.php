@@ -2,7 +2,7 @@
 
 class Backup
 {
-    private Database $_database;
+    private $_database;
     private $_tableName = "backups";
 
     public function __construct()
@@ -11,7 +11,7 @@ class Backup
     }
 
     public function create(
-        array $data
+        $data
     ) {
         return $this->_database->insert(
             $this->_tableName,
@@ -20,8 +20,9 @@ class Backup
     }
 
     public function update(
-        array $data, int $id
-    ): Database {
+        $data,
+        $id
+    ) {
         return $this->_database->update(
             $this->_tableName,
             $data,
@@ -30,9 +31,9 @@ class Backup
     }
 
     public function delete(
-        array|int $targets,
-        array $conjuctions = ["AND"]
-    ): Database {
+        $targets,
+        $conjuctions = ["AND"]
+    ) {
         return $this->_database->delete(
             $this->_tableName,
             $targets,
@@ -41,15 +42,15 @@ class Backup
     }
 
     public function get(
-        array|int $search,
-        array $conjuctions = ["AND"]
-    ): Database {
+        $search,
+        $conjuctions = ["AND"]
+    ) {
         $sql = "";
         $value = [];
-        if(is_array($search) && count($search) > 0) {
+        if (is_array($search) && count($search) > 0) {
             $sql .= "WHERE {$search[0]} {$search[1]} ?";
             $value = [$search[2]];
-        } else if(is_int($search) && $search > 0) {
+        } else if (is_int($search) && $search > 0) {
             $sql .= "WHERE id = ?";
             $value = [$search];
         }
@@ -73,7 +74,7 @@ class Backup
             backups.backup_filename as backup_filename,
             backups.date_created as date_created 
 
-            FROM {$this->_tableName} LEFT JOIN users ON {$this->_tableName}.user_id = users.id ". $sql,
+            FROM {$this->_tableName} LEFT JOIN users ON {$this->_tableName}.user_id = users.id " . $sql,
             $value
         );
     }

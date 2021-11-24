@@ -2,16 +2,16 @@
 
 class Database
 {
-    private static Database $_instance;
-    private string $_id;
-    private PDO $_pdo;
+    private static $_instance;
+    private $_id;
+    private $_pdo;
     private $_query;
-    private bool $_error;
-    private int $_count;
-    private array $_results;
+    private $_error;
+    private $_count;
+    private $_results;
 
-    protected static array $operators = [">", "<", "=", "<=", ">="];
-    protected static array $conjuctions = ["AND", "OR"];
+    protected static $operators = [">", "<", "=", "<=", ">="];
+    protected static $conjuctions = ["AND", "OR"];
 
     private function __construct()
     {
@@ -28,7 +28,7 @@ class Database
         }
     }
 
-    public static function instance(): Database
+    public static function instance()
     {
         if (!isset(Self::$_instance)) {
             Self::$_instance = new Database();
@@ -38,9 +38,9 @@ class Database
     }
 
     public function query(
-        string $sql,
-        array $params = []
-    ): Database {
+        $sql,
+        $params = []
+    ) {
         $this->_error = false;
         if ($this->_query = $this->_pdo->prepare($sql)) {
 
@@ -64,18 +64,18 @@ class Database
     }
 
     public function action(
-        string $action,
-        string $table,
-        array $where = [],
-        array $conjuction = ["AND"]
-    ): Database {
+        $action,
+        $table,
+        $where = [],
+        $conjuction = ["AND"]
+    ) {
         $values = [];
         $sub_sql = "";
 
         if (is_array($where)) {
-            
+
             $_count = count($where);
-            
+
             if ($_count <= 0) {
                 $this->_error = true;
                 return $this;
@@ -115,10 +115,10 @@ class Database
     }
 
     public function get(
-        string $table,
-        array|int $search = 0,
-        array $conjuction = ["AND"]
-    ): Database {
+        $table,
+        $search = 0,
+        $conjuction = ["AND"]
+    ) {
         if (is_int($search)) {
             return $this->action("SELECT *", $table, ["id", $search == 0 ? ">" : "=", $search], $conjuction);
         }
@@ -127,10 +127,10 @@ class Database
     }
 
     public function delete(
-        string $table,
-        array|int $targets = [],
-        array $conjuction = ["AND"]
-    ): Database {
+        $table,
+        $targets = [],
+        $conjuction = ["AND"]
+    ) {
         if (is_int($targets)) {
             return $this->action("DELETE", $table, ["id", "=", $targets]);
         }
@@ -139,9 +139,9 @@ class Database
     }
 
     public function insert(
-        String $table,
-        array $data
-    ): Database {
+        $table,
+        $data
+    ) {
         $values = [];
         $col_names = "";
         $col_values = "";
@@ -166,10 +166,10 @@ class Database
     }
 
     public function update(
-        String $table,
-        array $data,
-        int $id
-    ): Database {
+        $table,
+        $data,
+        $id
+    ) {
         $values = [];
         $sub_sql = "";
 
@@ -187,9 +187,9 @@ class Database
     }
 
     public function results(
-        bool $only_first = false,
-        bool $array = false
-    ): array|object {
+        $only_first = false,
+        $array = false
+    ) {
         if ($only_first) {
             $_key = array_key_first($this->_results);
             if (!is_null($_key)) {
@@ -205,17 +205,17 @@ class Database
         return $array ? $_data : $this->_results;
     }
 
-    public function id(): int
+    public function id()
     {
         return $this->_id ?? 0;
     }
 
-    public function error(): bool
+    public function error()
     {
         return $this->_error;
     }
 
-    public function count(): int
+    public function count()
     {
         return $this->_count;
     }

@@ -1,11 +1,13 @@
 <?php
 
-class Router {
-    private static Response $_response;
+class Router
+{
+    private static $_response;
 
-    public static function parse(Endpoint $endpoint, string $method, array $data, array $files) : void {
+    public static function parse($endpoint, $method, $data, $files)
+    {
         self::$_response = new Response();
-        switch($endpoint->url) {
+        switch ($endpoint->url) {
             case "users":
                 self::$_response = UserService::render($endpoint->target, $method, $data, $files);
                 break;
@@ -16,7 +18,8 @@ class Router {
         }
     }
 
-    public static function route() {
+    public static function route()
+    {
         return json_encode([
             "status" => self::$_response->status,
             "title" => self::$_response->title,
@@ -24,5 +27,4 @@ class Router {
             "data" => self::$_response->data
         ]);
     }
-
 }

@@ -2,16 +2,16 @@
 
 class Response
 {
-    public string $status;
-    public string $title;
-    public string $message;
-    public array $data;
+    public $status;
+    public $title;
+    public $message;
+    public $data;
 
     public function __construct(
-        string $status = "",
-        string $title = "",
-        string $message = "",
-        array|Object $data = []
+        $status = "",
+        $title = "",
+        $message = "",
+        $data = []
     ) {
         $this->status = $status;
         $this->title = $title;

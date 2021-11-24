@@ -2,7 +2,7 @@
 
 class User
 {
-    private Database $_database;
+    private $_database;
     private $_tableName = "users";
 
     public function __construct()
@@ -11,8 +11,8 @@ class User
     }
 
     public function create(
-        array $data
-    ): Database {
+        $data
+    ) {
         return $this->_database->insert(
             $this->_tableName,
             $data
@@ -20,9 +20,9 @@ class User
     }
 
     public function update(
-        array $data,
-        int $id
-    ): Database {
+        $data,
+        $id
+    ) {
         return $this->_database->update(
             $this->_tableName,
             $data,
@@ -31,9 +31,9 @@ class User
     }
 
     public function delete(
-        array|int $targets,
-        array $conjuctions = ["AND"]
-    ): Database {
+        $targets,
+        $conjuctions = ["AND"]
+    ) {
         return $this->_database->delete(
             $this->_tableName,
             $targets,
@@ -42,9 +42,9 @@ class User
     }
 
     public function get(
-        array|int $search,
-        array $conjuctions = ["AND"]
-    ): Database {
+        $search,
+        $conjuctions = ["AND"]
+    ) {
         return $this->_database->get(
             $this->_tableName,
             $search,
