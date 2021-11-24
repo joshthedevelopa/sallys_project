@@ -3,8 +3,8 @@
 // include_once HOST . 'core/init.php';
 
 abstract class Service
-{    
-    public static function render(string $end, string $method, array $data, array $files)
+{
+    public static function render($end, $method, $data, $files)
     {
 
         switch ($method) {
@@ -29,7 +29,7 @@ abstract class Service
         }
     }
 
-    protected static function get(array $data, int $end)
+    protected static function get($data, $end)
     {
         return new Response(
             "INVALID_METHOD",
@@ -38,7 +38,7 @@ abstract class Service
         );
     }
 
-    protected static function post(array $data, int|null $id = null)
+    protected static function post($data, $id = null)
     {
         return new Response(
             "INVALID_METHOD",
@@ -56,7 +56,7 @@ abstract class Service
         );
     }
 
-    protected static function delete(array $data, int|null $id)
+    protected static function delete($data, $id)
     {
         return new Response(
             "INVALID_METHOD",

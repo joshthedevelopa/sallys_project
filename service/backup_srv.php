@@ -3,7 +3,7 @@
 class BackupService extends Service
 {
 
-    public static function get(array $data, int $end)
+    public static function get($data, $end)
     {
         $backups = new Backup();
         if (count($data) <= 0) {
@@ -13,22 +13,22 @@ class BackupService extends Service
 
         if (!$backups->error()) {
             return new Response(
-                status: "OK",
-                title: "Backup Data",
-                message: "Backup was retrieved successfully",
-                data: $backups->results(false, true)
+                "OK",
+                "Backup Data",
+                "Backup was retrieved successfully",
+                $backups->results(false, true)
             );
         }
 
         return new Response(
-            status: "ERROR",
-            title: "Backup Data",
-            message: "Backup could not be retrieved successfully",
-            data: [],
+            "ERROR",
+            "Backup Data",
+            "Backup could not be retrieved successfully",
+            [],
         );
     }
 
-    public static function post(array $data, int|null $id = null)
+    public static function post($data, $id = null)
     {
         $backups = new Backup();
         $datetime = date("Y-m-d_H:i:s");
@@ -39,20 +39,20 @@ class BackupService extends Service
             foreach ($data as $key => $value) {
                 if (empty($value)) {
                     return new Response(
-                        status: "ERROR",
-                        title: "Backup Data",
-                        message: "All flieds are required",
-                        data: [],
+                        "ERROR",
+                        "Backup Data",
+                        "All flieds are required",
+                        [],
                     );
                 }
             }
 
             if (!isset($files) || count($files) <= 0) {
                 return new Response(
-                    status: "ERROR",
-                    title: "Backup Data",
-                    message: "backup file is required",
-                    data: [],
+                    "ERROR",
+                    "Backup Data",
+                    "Backup file is required",
+                    [],
                 );
             }
         }
@@ -67,10 +67,10 @@ class BackupService extends Service
 
             if (!move_uploaded_file($file, "../uploads/" . $new_filename)) {
                 return new Response(
-                    status: "ERROR",
-                    title: "Backup Data",
-                    message: "File could not be uploaded to our server",
-                    data: [],
+                    "ERROR",
+                    "Backup Data",
+                    "File could not be uploaded to our server",
+                    [],
                 );
             }
         }
@@ -81,10 +81,10 @@ class BackupService extends Service
 
             if ($user->error()) {
                 return new Response(
-                    status: "ERROR",
-                    title: "Backup Data",
-                    message: "User does not exist",
-                    data: []
+                    "ERROR",
+                    "Backup Data",
+                    "User does not exist",
+                    []
                 );
             }
 
@@ -97,10 +97,10 @@ class BackupService extends Service
 
             if ($user->error()) {
                 return new Response(
-                    status: "ERROR",
-                    title: "Backup Data",
-                    message: "Your data could not be backedup successfully",
-                    data: []
+                    "ERROR",
+                    "Backup Data",
+                    "Your data could not be backedup successfully",
+                    []
                 );
             }
 
@@ -121,22 +121,22 @@ class BackupService extends Service
 
         if (!$backups->error()) {
             return new Response(
-                status: "OK",
-                title: "Backup Data",
-                message: "Your data was backedup successfully",
-                data: $backups->results(false, true)
+                "OK",
+                "Backup Data",
+                "Your data was backedup successfully",
+                $backups->results(false, true)
             );
         }
 
         return new Response(
-            status: "ERROR",
-            title: "Backup Data",
-            message: "Your data could not be backedup successfully",
-            data: $backups->results(false, true)
+            "ERROR",
+            "Backup Data",
+            "Your data could not be backedup successfully",
+            $backups->results(false, true)
         );
     }
 
-    public static function delete(array $data, int|null $id)
+    public static function delete($data, $id)
     {
         $backups = new Backup();
         if (count($data) <= 0) {
@@ -145,65 +145,65 @@ class BackupService extends Service
         $backups = $backups->get($data ?? $id);
 
         if (!$backups->error()) {
-            if($backups->count() > 0) {
+            if ($backups->count() > 0) {
                 $backup_details = $backups->results(true);
 
                 $backups = new Backup();
                 $backups = $backups->delete($data ?? $id);
 
-                if(!$backups->error()) {
+                if (!$backups->error()) {
                     $user = new User();
                     $user = $user->get((int) $backup_details->user_id);
-        
+
                     if ($user->error()) {
                         return new Response(
-                            status: "ERROR",
-                            title: "Backup Data",
-                            message: "User does not exist",
-                            data: []
+                            "ERROR",
+                            "Backup Data",
+                            "User does not exist",
+                            []
                         );
                     }
-        
+
                     $user_details = $user->results(true);
-        
+
                     $user = new User();
                     $user = $user->update([
                         "backup_size" => $user_details->backup_size - ($backup_details->backup_size ?? 0)
                     ], $user_details->id);
-        
+
                     if ($user->error()) {
                         return new Response(
-                            status: "ERROR",
-                            title: "Backup Data",
-                            message: "Your data could not be deleted successfully",
-                            data: []
+                            "ERROR",
+                            "Backup Data",
+                            "Your data could not be deleted successfully",
+                            []
                         );
                     }
 
                     if (!unlink("../uploads/" . $backup_details->backup_filename)) {
                         return new Response(
-                            status: "ERROR",
-                            title: "Backup Data",
-                            message: "File could not be uploaded to our server",
-                            data: [],
+                            "ERROR",
+                            "Backup Data",
+                            "File could not be uploaded to our server",
+                            [],
                         );
                     }
 
                     return new Response(
-                        status: "OK",
-                        title: "Backup Data",
-                        message: "Backup was deleted successfully",
-                        data: []
+                        "OK",
+                        "Backup Data",
+                        "Backup was deleted successfully",
+                        []
                     );
                 }
             }
         }
 
         return new Response(
-            status: "ERROR",
-            title: "Backup Data",
-            message: "Backup could not be delected successfully",
-            data: [],
+            "ERROR",
+            "Backup Data",
+            "Backup could not be delected successfully",
+            [],
         );
     }
 }

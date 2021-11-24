@@ -2,32 +2,32 @@
 
 class UserService extends Service
 {
-    public static function get(array $data, int $end)
+    public static function get($data, $end)
     {
         $user = new User();
-        if(count($data) <= 0) {
+        if (count($data) <= 0) {
             $data = null;
         }
         $user = $user->get($data ?? $end);
 
         if (!$user->error()) {
             return new Response(
-                status: "OK",
-                title: "User Data",
-                message: "User was updated successfully",
-                data: $user->results(false, true)
+                "OK",
+                "User Data",
+                "User was updated successfully",
+                $user->results(false, true)
             );
         }
 
         return new Response(
-            status: "ERROR",
-            title: "User Data",
-            message: "User could not be retrieved successfully",
-            data: [],
+            "ERROR",
+            "User Data",
+            "User could not be retrieved successfully",
+            [],
         );
     }
 
-    public static function post(array $data, int|null $id = null)
+    public static function post($data, $id = null)
     {
         $user = new User();
         extract($data);
@@ -36,10 +36,10 @@ class UserService extends Service
             foreach ($data as $key => $value) {
                 if (empty($value)) {
                     return new Response(
-                        status: "ERROR",
-                        title: "Backup Data",
-                        message: "All flieds are required",
-                        data: [],
+                        "ERROR",
+                        "Backup Data",
+                        "All flieds are required",
+                        [],
                     );
                 }
             }
@@ -61,24 +61,24 @@ class UserService extends Service
 
         if (!$user->error()) {
             return new Response(
-                status: "OK",
-                title: is_null($id) ? "User Registration" : "User Update",
-                message: is_null($id) ? "User was created successfully" : "User was updated successfully",
-                data: is_null($id) ? [] : [
+                "OK",
+                is_null($id) ? "User Registration" : "User Update",
+                is_null($id) ? "User was created successfully" : "User was updated successfully",
+                is_null($id) ? [] : [
                     "id" => $user->id()
                 ],
             );
         }
 
         return new Response(
-            status: "ERROR",
-            title: "User Registration",
-            message: "User could not be created successfully",
-            data: [],
+            "ERROR",
+            "User Registration",
+            "User could not be created successfully",
+            [],
         );
     }
 
-    public static function delete(array $data, int|null $id)
+    public static function delete($data, $id)
     {
         $user = new User();
         if (count($data) <= 0) {
@@ -87,13 +87,13 @@ class UserService extends Service
         $user = $user->get($data ?? $id);
 
         if (!$user->error()) {
-            if($user->count() > 0) {
+            if ($user->count() > 0) {
                 $user_details = $user->results(true);
 
-                if(!$user->error()) {
+                if (!$user->error()) {
                     $backup = new Backup();
                     $backup = $backup->get(["user_id", "=", (int) $user_details->id]);
-        
+
                     if (!$backup->error()) {
                         foreach ($backup->results() as $key => $value) {
                             try {
@@ -106,13 +106,13 @@ class UserService extends Service
 
                     $backup = new Backup();
                     $backup = $backup->delete(["user_id", "=", (int) $user_details->id]);
-        
+
                     if ($backup->error()) {
                         return new Response(
-                            status: "ERROR",
-                            title: "Backup Data",
-                            message: "Your data could not be deleted successfully",
-                            data: []
+                            "ERROR",
+                            "Backup Data",
+                            "Your data could not be deleted successfully",
+                            []
                         );
                     }
 
@@ -121,28 +121,28 @@ class UserService extends Service
 
                     if (!$user->error()) {
                         return new Response(
-                            status: "OK",
-                            title: "User Deletion",
-                            message: "User was deleted successfully",
-                            data: []
+                            "OK",
+                            "User Deletion",
+                            "User was deleted successfully",
+                            []
                         );
                     }
-                    
+
                     return new Response(
-                        status: "ERROR",
-                        title: "User Deletion",
-                        message: "User could not be deleted successfully",
-                        data: [],
+                        "ERROR",
+                        "User Deletion",
+                        "User could not be deleted successfully",
+                        [],
                     );
                 }
             }
         }
 
         return new Response(
-            status: "ERROR",
-            title: "User Deletion",
-            message: "User could not be deleted successfully",
-            data: [],
+            "ERROR",
+            "User Deletion",
+            "User could not be deleted successfully",
+            [],
         );
     }
 }
