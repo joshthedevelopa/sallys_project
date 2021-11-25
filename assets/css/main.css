@@ -1,26 +1,26 @@
-/* Variables */
-@import url(var.css);
-
-/* Main Body Styles */
-@import url(skeleton.css);
-
-/* Form Styles */
-@import url(form.css);
-
-/* Container Styles */
-@import url(container.css);
-
-/* table Styles */
-@import url(table.css);
-
-/* Tile Styles */
-@import url(tile.css);
-
-/* Loader Styles */
-@import url(loader.css);
-
-/* Tile Styles */
-@import url(button.css);
-
-/* Loader Styles */
+/* Variables */
+@import url(var.css);
+
+/* Main Body Styles */
+@import url(skeleton.css);
+
+/* Form Styles */
+@import url(form.css);
+
+/* Container Styles */
+@import url(container.css);
+
+/* table Styles */
+@import url(table.css);
+
+/* Tile Styles */
+@import url(tile.css);
+
+/* Loader Styles */
+@import url(loader.css);
+
+/* Tile Styles */
+@import url(button.css);
+
+/* Loader Styles */
 @import url(layout.css);

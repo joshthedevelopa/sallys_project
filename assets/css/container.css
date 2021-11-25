@@ -1,54 +1,54 @@
-.card {
-    background-color: white;
-    margin: var(--spacing);
-    border: var(--border);
-    border-radius: var(--radius);
-    transition: all ease-in-out .25s
-}
-
-.card>div:nth-child(2) {
-    border-top: var(--border);
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    padding: var(--spacing);
-}
-
-.card-title {
-    display: flex;
-}
-
-.card-action>ul {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    list-style: none;
-    color: var(--main-color);
-}
-
-.card-action>ul>li {
-    display: flex;
-    align-items: center;
-    padding: 0 var(--spacing);
-    cursor: pointer;
-}
-
-.card-action>ul>li:hover {
-    color: var(--tint-main-color);
-    text-decoration: underline;
-}
-
-.card-action>ul>li:active {
-    transform: translateY(2px);
-}
-
-.card-action>ul>li>i {
-    padding: 0 calc(var(--spacing) * .5);
-}
-
-.card-body {
-    padding: var(--spacing) calc(var(--spacing) * 2);
+.card {
+    background-color: white;
+    margin: var(--spacing);
+    border: var(--border);
+    border-radius: var(--radius);
+    transition: all ease-in-out .25s
+}
+
+.card>div:nth-child(2) {
+    border-top: var(--border);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing);
+}
+
+.card-title {
+    display: flex;
+}
+
+.card-action>ul {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    list-style: none;
+    color: var(--main-color);
+}
+
+.card-action>ul>li {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing);
+    cursor: pointer;
+}
+
+.card-action>ul>li:hover {
+    color: var(--tint-main-color);
+    text-decoration: underline;
+}
+
+.card-action>ul>li:active {
+    transform: translateY(2px);
+}
+
+.card-action>ul>li>i {
+    padding: 0 calc(var(--spacing) * .5);
+}
+
+.card-body {
+    padding: var(--spacing) calc(var(--spacing) * 2);
 }
