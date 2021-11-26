@@ -71,7 +71,11 @@ class AdminService extends Service
             $data = null;
         }
 
-        $user = $user->get($data ?? $end ?? Session::get("id"));
+        if($end == 0) {
+            $end = null;
+        }
+
+        $user = $user->get($data ?? $end ?? (int) Session::get("id"));
 
         if (!$user->error()) {
             return new Response(

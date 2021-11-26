@@ -4,12 +4,9 @@ define("HOST",  "../");
 $GLOBALS['config'] = [
     "mysql" => [
         "host" => "127.0.0.1",
-        // "database" => "sally",
-        // "username" => "root",
-        // "password" =>  ""
-        "database" => "id18003170_sally",
-        "username" => "	id18003170_root",
-        "password" =>  "-Y\$B&t)kU-NxA(9V"
+        "database" => "dalex",
+        "username" => "root",
+        "password" =>  ""
     ],
 ];
 

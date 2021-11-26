@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 23, 2021 at 08:09 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Host: localhost:3306
+-- Generation Time: Nov 26, 2021 at 12:31 PM
+-- Server version: 10.3.31-MariaDB-0+deb10u1
+-- PHP Version: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sally`
+-- Database: `dalex`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `role` varchar(30) NOT NULL DEFAULT 'Administrator',
+  `status` enum('Active','Inactive') NOT NULL DEFAULT 'Active',
+  `date_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -59,6 +76,12 @@ CREATE TABLE `users` (
 --
 
 --
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `backups`
 --
 ALTER TABLE `backups`
@@ -75,6 +98,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `backups`
 --
 ALTER TABLE `backups`
@@ -84,7 +113,7 @@ ALTER TABLE `backups`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
